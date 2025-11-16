@@ -24,8 +24,8 @@ erDiagram
         string email
         string name
         string avatar_url
-        string auth_provider        // 'google'
-        string provider_user_id     // Google sub
+        string auth_provider
+        string provider_user_id
         timestamp created_at
         timestamp updated_at
         timestamp last_login_at
@@ -34,16 +34,16 @@ erDiagram
     INTEREST_CATEGORIES {
         int       id PK
         string    name
-        int       parent_id FK      // self reference
-        smallint  level             // 1:대, 2:중, 3:소
+        int       parent_id FK
+        smallint  level
         timestamp created_at
     }
 
     USER_INTERESTS {
         uuid   id PK
         uuid   user_id FK
-        int    category_id FK       // 보통 소분류 id
-        float  weight               // 기본 1.0
+        int    category_id FK
+        float  weight
         timestamp created_at
     }
 
@@ -52,7 +52,7 @@ erDiagram
         string   title
         string   description
         int      category_id FK
-        string   source_type        // trend | bookend | munch | manual
+        string   source_type
         json     source_meta
         timestamp created_at
         timestamp updated_at
@@ -64,9 +64,10 @@ erDiagram
         uuid     topic_id FK
         string   input_keyword
         boolean  use_trend
-        string   selected_format    // blog | newsletter | ...
+        string   selected_format
         timestamp created_at
     }
+
 ```
 ## 2. 주요 플로우
 
@@ -401,5 +402,6 @@ Google `id_token`으로 로그인/회원가입 후 JWT 발급.
   ]
 }
 ```
+
 
 
