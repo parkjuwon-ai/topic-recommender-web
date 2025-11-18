@@ -1,0 +1,19 @@
+[
+  {
+    "id": "book-1",
+    "title": "추천 시스템 입문",
+    "description": "콘텐츠 기반/협업 필터링 개념부터 실제 서비스 적용까지 정리한 북엔드 큐레이션 도서.",
+    "category_ids": [3, 7],
+    "source": "bookend",
+    "url": "https://book-end.tech/example-1"
+  },
+  {
+    "id": "book-2",
+    "title": "글감이 사라질 때 다시 시작하는 회고 노트",
+    "description": "프로젝트 회고를 글로 풀어내는 연습을 돕는 북엔드 추천 도서.",
+    "category_ids": [7],
+    "source": "bookend",
+    "url": "https://book-end.tech/example-2"
+  }
+]
+

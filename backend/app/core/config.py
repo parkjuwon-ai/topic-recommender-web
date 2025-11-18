@@ -1,29 +1,38 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+# app/core/config.py
+from functools import lru_cache
+from typing import List
+
+from pydantic import AnyHttpUrl
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    app_name: str = "Bookend Topic Recommender API"
-    environment: str = "local"
+    PROJECT_NAME: str = "Bookend Topic Lab API"
 
-    # DB
-    database_url: str = (
-        "postgresql+psycopg2://parkseoul@localhost:5432/bookend_topics"
-    )
+    DATABASE_URL: str
 
-    # ✅ JWT 설정
-    jwt_secret_key: str = "change-me-in-.env"
-    jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 60
+    JWT_SECRET_KEY: str
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
 
-    # ✅ 구글 로그인용 클라이언트 ID (나중에 콘솔에서 받아서 .env에 넣을 값)
-    google_client_id: str = ""
+    GOOGLE_CLIENT_ID: str
 
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        env_prefix="",
-        extra="ignore",
-    )
+    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
+        "http://localhost:3000",
+    ]
+
+    # 🔹 Day 9: Ollama LLM 설정 (기본: llama3.2 3B)
+    # - 로컬에서: `ollama pull llama3.2` 먼저 실행
+    # - 필요하면 .env에서 OLLAMA_MODEL, OLLAMA_BASE_URL 교체
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "llama3.2"
+
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
 
 
-settings = Settings()
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()
 

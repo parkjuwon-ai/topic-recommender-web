@@ -3,7 +3,7 @@ from typing import List, Dict, Optional
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.db.deps import get_db
+from app.deps.db import get_db
 from app.models import InterestCategory
 from app.schemas.interest import InterestCategoryNode
 

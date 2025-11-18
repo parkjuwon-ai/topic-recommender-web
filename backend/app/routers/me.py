@@ -2,7 +2,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.db.deps import get_db, get_current_user
+from app.deps.db import get_db
+from app.deps.auth import get_current_user
 from app.models import User, UserInterest, InterestCategory
 from app.schemas.user import UserRead
 from app.schemas.interest import UserInterestsUpdate

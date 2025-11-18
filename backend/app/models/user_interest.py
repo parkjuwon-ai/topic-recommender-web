@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import Column, Integer, ForeignKey, TIMESTAMP, func, Float
 from sqlalchemy.dialects.postgresql import UUID
 
-from app.db.session import Base
+from app.db.base import Base
 
 
 class UserInterest(Base):
