@@ -12,9 +12,15 @@ app = FastAPI(
     version="0.1.0",
 )
 
+# 🔹 프론트에서 접속하는 주소들 (Next dev 서버)
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
